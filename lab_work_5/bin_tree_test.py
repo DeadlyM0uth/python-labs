@@ -1,6 +1,6 @@
 import unittest
 from typing import Optional, Dict, Any
-from bin_tree import gen_bin_tree
+from bin_tree import gen_bin_tree 
 
 
 class TestGenBinTree(unittest.TestCase):
