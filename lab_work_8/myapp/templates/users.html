@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }} - Пользователи</title>
+</head>
+<body>
+    <h1>Пользователи</h1>
+    
+    <nav>
+        <a href="/">Главная</a> |
+        <a href="/users">Пользователи</a> |
+        <a href="/currencies">Валюты</a> |
+        <a href="/author">Об авторе</a>
+    </nav>
+    
+    <hr>
+    
+    {% if users %}
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Имя</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.name }}</td>
+                <td><a href="/user?id={{ user.id }}">Посмотреть профиль</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Пользователи не найдены.</p>
+    {% endif %}
+    
+    <hr>
+    <p>&copy; 2024 {{ app_name }}. Все права защищены.</p>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }} - Профиль пользователя</title>
+</head>
+<body>
+    <h1>Профиль пользователя</h1>
+    
+    <nav>
+        <a href="/">Главная</a> |
+        <a href="/users">Пользователи</a> |
+        <a href="/currencies">Валюты</a> |
+        <a href="/author">Об авторе</a>
+    </nav>
+    
+    <hr>
+    
+    <p><a href="/users">&lt; Назад к списку</a></p>
+    
+    {% if error %}
+    <p style="color: red;"><strong>Ошибка:</strong> {{ error }}</p>
+    {% elif user %}
+    
+    <h2>{{ user.name }}</h2>
+    <ul>
+        <li><strong>ID:</strong> {{ user.id }}</li>
+        <li><strong>Статус:</strong> Активный</li>
+    </ul>
+    
+    <h3>Подписанные валюты</h3>
+    
+    {% if user_currencies %}
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Код</th>
+                <th>Название</th>
+                <th>Курс (RUB)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for currency in user_currencies %}
+            <tr>
+                <td><strong>{{ currency.char_code }}</strong></td>
+                <td>{{ currency.name }}</td>
+                <td>{{ currency.value }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Пользователь не подписан ни на одну валюту.</p>
+    {% endif %}
+    
+    {% else %}
+    <p style="color: red;"><strong>Ошибка:</strong> Пользователь не найден</p>
+    {% endif %}
+    
+    <hr>
+    <p>&copy; 2024 {{ app_name }}. Все права защищены.</p>
+</body>
+</html>
