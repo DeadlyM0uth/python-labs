@@ -109,6 +109,7 @@ DELETE FROM currency WHERE id = 1;
 - `/currency/update?USD=<value>` — обновить курс валюты USD
 - `/currency/show` — вывести валюты в логи консоли (отладка)
 - `/author` — информация об авторе
+- `/currency/add?num_code=840&char_code=USD&name=Доллар&value=90.5&nominal=1` — добавить новую валюту
 
 ## Тесты и примеры запуска — unittest
 - Файлы тестов:

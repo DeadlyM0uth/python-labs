@@ -94,6 +94,8 @@ class CurrenciesServer(BaseHTTPRequestHandler):
                     self._handle_not_found()
             elif path == "/currency/update":
                 self._handle_currency_update(query_params)
+            elif path == "/currency/add":
+                self._handle_currency_add(query_params)
             elif path == "/currency/show":
                 self._handle_currency_show()
             elif path == "/author":
@@ -220,6 +222,50 @@ class CurrenciesServer(BaseHTTPRequestHandler):
         error = "Не указана валюта для обновления"
         html_content = self.page_renderer.render_error(400, error)
         self._send_response(html_content, 400)
+
+    def _handle_currency_add(self, query_params: Dict[str, List[str]]) -> None:
+        """Обрабатывает добавление новой валюты (/currency/add).
+
+        Ожидает параметры: num_code, char_code, name, value, nominal.
+        Параметры передаются в query строке, например:
+        /currency/add?num_code=840&char_code=USD&name=Доллар&value=90.5&nominal=1
+
+        Args:
+            query_params: Параметры query строки.
+        """
+        # Required parameters
+        try:
+            num_code = self._get_query_param(query_params, 'num_code', str)
+            char_code = self._get_query_param(query_params, 'char_code', str)
+            name = self._get_query_param(query_params, 'name', str)
+            value = self._get_query_param(query_params, 'value', float)
+            nominal = self._get_query_param(query_params, 'nominal', int)
+        except Exception as e:
+            error_html = self.page_renderer.render_error(400, f"Некорректные параметры: {str(e)}")
+            self._send_response(error_html, 400)
+            return
+
+        # Validate mandatory params presence
+        if None in (num_code, char_code, name, value, nominal):
+            error_html = self.page_renderer.render_error(400, "Отсутствуют обязательные параметры: num_code, char_code, name, value, nominal")
+            self._send_response(error_html, 400)
+            return
+
+        try:
+            new_id = self.currency_controller.add_currency(
+                num_code=num_code,
+                char_code=char_code,
+                name=name,
+                value=value,
+                nominal=nominal,
+            )
+
+            message = f"Валюта {char_code} успешно добавлена (ID {new_id})"
+            html_content = self.page_renderer.render_success_message(message)
+            self._send_response(html_content, 200)
+        except Exception as e:
+            error_html = self.page_renderer.render_error(500, f"Не удалось добавить валюту: {str(e)}")
+            self._send_response(error_html, 500)
 
     def _handle_currency_show(self) -> None:
         """Обрабатывает вывод валют в консоль для отладки (/currency/show)."""
@@ -391,6 +437,7 @@ def main() -> None:
     print(f"Удалить валюту:         http://localhost:8000/currency/delete?id=1")
     print(f"Обновить курс:          http://localhost:8000/currency/update?USD=95.5")
     print(f"Показать валюты (логи): http://localhost:8000/currency/show")
+    print(f"Добавить валюты: http://localhost:8000/currency/add?num_code=840&char_code=USD&name=Доллар&value=90.5&nominal=1")
     print("=" * 80)
 
     try:
