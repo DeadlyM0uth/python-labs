@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }} - Валюты</title>
+</head>
+<body>
+    <h1>Валюты</h1>
+    
+    <nav>
+        <a href="/">Главная</a> |
+        <a href="/users">Пользователи</a> |
+        <a href="/currencies">Валюты</a> |
+        <a href="/author">Об авторе</a>
+    </nav>
+    
+    <hr>
+    
+    <h2>Текущие курсы валют</h2>
+    <p><a href="/currencies">Обновить</a></p>
+    
+    {% if error %}
+    <p style="color: red;"><strong>Ошибка:</strong> {{ error }}</p>
+    {% endif %}
+    
+    {% if currencies %}
+    <table border="1" cellpadding="10" cellspacing="0">
+        <thead>
+            <tr>
+                <th>Код</th>
+                <th>Название</th>
+                <th>Номинал</th>
+                <th>Цифровой код</th>
+                <th>Курс (RUB)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for currency in currencies %}
+            <tr>
+                <td>{{ currency.char_code }}</td>
+                <td>{{ currency.name }}</td>
+                <td>{{ currency.nominal }}</td>
+                <td>{{ currency.num_code }}</td>
+                <td>{{ currency.value }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Валюты не найдены.</p>
+    {% endif %}
+    
+    {% if last_updated %}
+    <p><em>Обновлено: {{ last_updated }}</em></p>
+    {% endif %}
+    
+    <hr>
+    <p>&copy; 2024 {{ app_name }}. Данные от ЦБ РФ.</p>
+</body>
+</html>

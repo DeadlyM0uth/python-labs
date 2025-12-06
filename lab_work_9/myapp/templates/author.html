@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }} - Об авторе</title>
+</head>
+<body>
+    <h1>Об авторе</h1>
+    
+    <nav>
+        <a href="/">Главная</a> |
+        <a href="/users">Пользователи</a> |
+        <a href="/currencies">Валюты</a> |
+        <a href="/author">Об авторе</a>
+    </nav>
+    
+    <hr>
+    
+    <h2>{{ author_name }}</h2>
+    <p><strong>Группа:</strong> {{ group }}</p>
+    
+    <h3>О проекте</h3>
+    <ul>
+        <li><strong>Название:</strong> {{ app_name }}</li>
+        <li><strong>Версия:</strong> {{ version }}</li>
+        <li><strong>Тип:</strong> Лабораторная работа по Python</li>
+    </ul>
+    
+    <h3>Функциональность</h3>
+    <ul>
+        <li>Управление пользователями</li>
+        <li>Получение курсов валют от ЦБ РФ</li>
+        <li>Подписка пользователей на валюты</li>
+        <li>Отслеживание динамики валют</li>
+    </ul>
+    
+    <h3>Используемые технологии</h3>
+    <ul>
+        <li>Python 3 — язык программирования</li>
+        <li>HTTPServer — встроенный веб-сервер</li>
+        <li>Jinja2 — шаблонизатор</li>
+        <li>Центральный банк РФ API — источник данных о валютах</li>
+    </ul>
+    
+    <hr>
+    <p>&copy; 2024 {{ app_name }}. Лабораторная работа № 8 по курсу Python.</p>
+</body>
+</html>

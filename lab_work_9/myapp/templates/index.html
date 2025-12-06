@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }} - Главная</title>
+</head>
+<body>
+    <h1>{{ app_name }}</h1>
+    <p>Версия {{ version }} | Автор: {{ author_name }} ({{ group }})</p>
+    
+    <nav>
+        <a href="/">Главная</a> |
+        <a href="/users">Пользователи</a> |
+        <a href="/currencies">Валюты</a> |
+        <a href="/author">Об авторе</a>
+    </nav>
+    
+    <hr>
+    
+    <h2>Добро пожаловать!</h2>
+    <p>Это приложение предоставляет информацию о курсах валют от Центрального банка РФ.</p>
+    
+    <h2>О приложении</h2>
+    <ul>
+        <li><strong>Название:</strong> {{ app_name }}</li>
+        <li><strong>Версия:</strong> {{ version }}</li>
+        <li><strong>Автор:</strong> {{ author_name }}</li>
+        <li><strong>Группа:</strong> {{ group }}</li>
+    </ul>
+    
+    <hr>
+    <p>&copy; 2024 {{ app_name }}. Все права защищены.</p>
+</body>
+</html>
