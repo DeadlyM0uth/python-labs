@@ -1,8 +1,8 @@
-import iteration4 as cy
+import integrate_cython as cy
 import math
 
 
-n_iter = 1_000_000
+n_iter = 10_000_000
 
-print(cy.integrate_cython(cy.my_sin, 0, math.pi, n_iter))
+print(cy.integrate_cython(math.sin, 0, math.pi, n_iter))
 
