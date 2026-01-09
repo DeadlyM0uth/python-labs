@@ -16,4 +16,4 @@
 - [X] [Лабораторная работа 7](https://github.com/DeadlyM0uth/python-labs/tree/main/lab_work_7)
 - [X] [Лабораторная работа 8](https://github.com/DeadlyM0uth/python-labs/tree/main/lab_work_8)
 - [X] [Лабораторная работа 9](https://github.com/DeadlyM0uth/python-labs/tree/main/lab_work_9)
-- [ ] Лабораторная работа 10
+- [X] Лабораторная работа 10
