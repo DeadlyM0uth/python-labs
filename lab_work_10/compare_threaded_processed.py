@@ -4,7 +4,7 @@ from iteration2.iteration2 import integrate_threaded
 from iteration3.iteration3 import integrate_processed
 
 def compare_threads_processes():
-    print("\nСравнение потоков и процессов (sin от 0 до π, n_iter=1000000):")
+    print("\nСравнение потоков и процессов (sin от 0 до π, n_iter=10_000_000):")
     print("-" * 60)
     
     for n_jobs in [2, 4, 6, 8]:

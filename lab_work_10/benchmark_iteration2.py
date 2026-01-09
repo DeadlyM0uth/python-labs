@@ -1,4 +1,4 @@
-from iteration2 import integrate_threaded
+from iteration2.iteration2 import integrate_threaded
 import math
 import timeit
 

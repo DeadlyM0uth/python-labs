@@ -1,6 +1,6 @@
 import math
 import timeit
-from iteration1 import integrate
+from iteration1.iteration1 import integrate
 
 # Замер времени выполнения для разных чисел итераций
 def measure_performance():

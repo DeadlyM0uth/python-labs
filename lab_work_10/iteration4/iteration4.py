@@ -1,8 +1,6 @@
-import math
 import concurrent.futures as ftres
-from iteration1.iteration1 import integrate
 from functools import partial
-import integrate_cython as cy
+import iteration4.integrate_cython as cy # type: ignore
 
 # Многопоточная версия с Cython
 def integrate_cython_threaded(
@@ -62,5 +60,3 @@ def integrate_cython_processed(
   return sum(results)
 
 
-a = integrate_cython_threaded(math.sin, 0, math.pi, 2, 10000)
-print(a)

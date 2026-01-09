@@ -34,7 +34,7 @@ def integrate_threaded(f: Callable[[float], float],
   for i in range(n_jobs):
     a_i = a + i * step
     b_i = a + (i + 1) * step
-    print(f"Поток {i}, границы: [{a_i:.3f}, {b_i:.3f}]")
+    # print(f"Поток {i}, границы: [{a_i:.3f}, {b_i:.3f}]")
     fs.append(spawn(a_i, b_i))
   
   # Собираем результаты

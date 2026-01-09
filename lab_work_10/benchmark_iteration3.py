@@ -1,4 +1,6 @@
-from iteration3 import integrate_processed
+import sys
+from pathlib import Path
+from iteration3.iteration3 import integrate_processed
 import math
 import timeit
 
