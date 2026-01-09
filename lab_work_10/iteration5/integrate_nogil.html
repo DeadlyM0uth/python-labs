@@ -296,81 +296,29 @@ body.cython { font-family: courier; font-size: 12; }
 </p>
 <p>Raw output: <a href="integrate_nogil.c">integrate_nogil.c</a></p>
 <div class="cython"><pre class="cython line score-8" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">01</span>: import cython</pre>
-<pre class='cython code score-8 '>  __pyx_t_3 = <span class='pyx_c_api'>__Pyx_PyDict_NewPresized</span>(0);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 1, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_mstate_global-&gt;__pyx_d, __pyx_mstate_global-&gt;__pyx_n_u_test, __pyx_t_3) &lt; (0)) <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L1_error)</span>
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
-</pre><pre class="cython line score-0">&#xA0;<span class="">02</span>: from libc.math cimport sin as c_sin</pre>
+<pre class='cython code score-8 '>  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyDict_NewPresized</span>(0);<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_mstate_global-&gt;__pyx_d, __pyx_mstate_global-&gt;__pyx_n_u_test, __pyx_t_2) &lt; (0)) <span class='error_goto'>__PYX_ERR(0, 1, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">02</span>: from libc.math cimport sin</pre>
 <pre class="cython line score-0">&#xA0;<span class="">03</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">04</span>: from cython.parallel import prange, parallel</pre>
 <pre class="cython line score-0">&#xA0;<span class="">05</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">06</span>: ctypedef double (*func_t)(double) nogil</pre>
 <pre class="cython line score-0">&#xA0;<span class="">07</span>: </pre>
 <pre class="cython line score-0">&#xA0;<span class="">08</span>: # Nogil версия вычислительной части</pre>
-<pre class="cython line score-6" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">09</span>: @cython.boundscheck(False)</pre>
-<pre class='cython code score-6 '>static double __pyx_f_15integrate_nogil_integrate_nogil(__pyx_t_15integrate_nogil_func_t __pyx_v_f, double __pyx_v_a, double __pyx_v_b, int __pyx_v_n_iter) {
-  double __pyx_v_acc;
-  double __pyx_v_step;
-  double __pyx_v_x;
-  int __pyx_v_i;
-  double __pyx_r;
-/* … */
-  /* function exit code */
-  __pyx_L1_error:;
-  __pyx_gilstate_save = <span class='pyx_c_api'>__Pyx_PyGILState_Ensure</span>();
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("integrate_nogil.integrate_nogil", __pyx_clineno, __pyx_lineno, __pyx_filename);
-  __pyx_r = -1;
-  <span class='pyx_c_api'>__Pyx_PyGILState_Release</span>(__pyx_gilstate_save);
-  __pyx_L0:;
-  return __pyx_r;
-}
-</pre><pre class="cython line score-0">&#xA0;<span class="">10</span>: @cython.wraparound(False)</pre>
-<pre class="cython line score-0">&#xA0;<span class="">11</span>: @cython.nonecheck(False)</pre>
-<pre class="cython line score-0">&#xA0;<span class="">12</span>: cdef double integrate_nogil(func_t f, double a, double b, int n_iter) nogil:</pre>
-<pre class="cython line score-0">&#xA0;<span class="">13</span>:   """</pre>
-<pre class="cython line score-0">&#xA0;<span class="">14</span>:   Вычислительная часть интеграции без GIL.</pre>
-<pre class="cython line score-0">&#xA0;<span class="">15</span>:   """</pre>
-<pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">16</span>:   cdef double acc = 0.0</pre>
-<pre class='cython code score-0 '>  __pyx_v_acc = 0.0;
-</pre><pre class="cython line score-9" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">17</span>:   cdef double step = (b - a) / n_iter</pre>
-<pre class='cython code score-9 '>  __pyx_t_1 = (__pyx_v_b - __pyx_v_a);
-  if (unlikely(__pyx_v_n_iter == 0)) {
-    PyGILState_STATE __pyx_gilstate_save = <span class='pyx_c_api'>__Pyx_PyGILState_Ensure</span>();
-    <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "float division");
-    <span class='pyx_c_api'>__Pyx_PyGILState_Release</span>(__pyx_gilstate_save);
-    <span class='error_goto'>__PYX_ERR(0, 17, __pyx_L1_error)</span>
-  }
-  __pyx_v_step = (__pyx_t_1 / ((double)__pyx_v_n_iter));
-</pre><pre class="cython line score-0">&#xA0;<span class="">18</span>:   cdef double x</pre>
-<pre class="cython line score-0">&#xA0;<span class="">19</span>:   cdef int i</pre>
-<pre class="cython line score-0">&#xA0;<span class="">20</span>: </pre>
-<pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">21</span>:   for i in range(n_iter):</pre>
-<pre class='cython code score-0 '>  __pyx_t_2 = __pyx_v_n_iter;
-  __pyx_t_3 = __pyx_t_2;
-  for (__pyx_t_4 = 0; __pyx_t_4 &lt; __pyx_t_3; __pyx_t_4+=1) {
-    __pyx_v_i = __pyx_t_4;
-</pre><pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">22</span>:     x = a + i * step</pre>
-<pre class='cython code score-0 '>    __pyx_v_x = (__pyx_v_a + (__pyx_v_i * __pyx_v_step));
-</pre><pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">23</span>:     acc += f(x) * step</pre>
-<pre class='cython code score-0 '>    __pyx_t_1 = __pyx_v_f(__pyx_v_x);<span class='error_goto'> if (unlikely(__Pyx_ErrOccurredWithGIL())) __PYX_ERR(0, 23, __pyx_L1_error)</span>
-    __pyx_v_acc = (__pyx_v_acc + (__pyx_t_1 * __pyx_v_step));
-  }
-</pre><pre class="cython line score-0">&#xA0;<span class="">24</span>: </pre>
-<pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">25</span>:   return acc</pre>
-<pre class='cython code score-0 '>  __pyx_r = __pyx_v_acc;
-  goto __pyx_L0;
-</pre><pre class="cython line score-0">&#xA0;<span class="">26</span>: </pre>
-<pre class="cython line score-89" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">27</span>: def integrate_sin_nogil_threads(double a, double b, int n_jobs=2, int n_iter=10_000_000):</pre>
-<pre class='cython code score-89 '>/* Python wrapper */
-static PyObject *__pyx_pw_15integrate_nogil_1integrate_sin_nogil_threads(PyObject *__pyx_self, 
+<pre class="cython line score-85" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">09</span>: @cython.boundscheck(False)</pre>
+<pre class='cython code score-85 '>/* Python wrapper */
+static PyObject *__pyx_pw_15integrate_nogil_1integrate_sin_threaded(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_15integrate_nogil_1integrate_sin_nogil_threads = {"integrate_sin_nogil_threads", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15integrate_nogil_1integrate_sin_nogil_threads, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_15integrate_nogil_1integrate_sin_nogil_threads(PyObject *__pyx_self, 
+<span class='py_macro_api'>PyDoc_STRVAR</span>(__pyx_doc_15integrate_nogil_integrate_sin_threaded, "\n    \320\222\321\213\321\207\320\270\321\201\320\273\321\217\320\265\321\202 \320\270\320\275\321\202\320\265\320\263\321\200\320\260\320\273 sin(x) \320\276\321\202 a \320\264\320\276 b \320\274\320\265\321\202\320\276\320\264\320\276\320\274 \320\277\321\200\321\217\320\274\320\276\321\203\320\263\320\276\320\273\321\214\320\275\320\270\320\272\320\276\320\262 \321\201 \320\270\321\201\320\277\320\276\320\273\321\214\320\267\320\276\320\262\320\260\320\275\320\270\320\265\320\274 prange.\n    \n    Parameters:\n    -----------\n    a, b : float\n        \320\237\321\200\320\265\320\264\320\265\320\273\321\213 \320\270\320\275\321\202\320\265\320\263\321\200\320\270\321\200\320\276\320\262\320\260\320\275\320\270\321\217\n    n_points : int\n        \320\232\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\276 \321\202\320\276\321\207\320\265\320\272 \321\200\320\260\320\267\320\261\320\270\320\265\320\275\320\270\321\217\n    num_threads : int\n        \320\232\320\276\320\273\320\270\321\207\320\265\321\201\321\202\320\262\320\276 \320\277\320\276\321\202\320\276\320\272\320\276\320\262 (0 = \320\260\320\262\321\202\320\276\320\276\320\277\321\200\320\265\320\264\320\265\320\273\320\265\320\275\320\270\320\265)\n    ");
+static PyMethodDef __pyx_mdef_15integrate_nogil_1integrate_sin_threaded = {"integrate_sin_threaded", (PyCFunction)(void(*)(void))(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_15integrate_nogil_1integrate_sin_threaded, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_15integrate_nogil_integrate_sin_threaded};
+static PyObject *__pyx_pw_15integrate_nogil_1integrate_sin_threaded(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -379,15 +327,15 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 ) {
   double __pyx_v_a;
   double __pyx_v_b;
-  int __pyx_v_n_jobs;
-  int __pyx_v_n_iter;
+  long __pyx_v_n_iter;
+  CYTHON_UNUSED int __pyx_v_n_threads;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
   PyObject *__pyx_r = 0;
   <span class='refnanny'>__Pyx_RefNannyDeclarations</span>
-  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("integrate_sin_nogil_threads (wrapper)", 0);
+  <span class='refnanny'>__Pyx_RefNannySetupContext</span>("integrate_sin_threaded (wrapper)", 0);
   #if !CYTHON_METH_FASTCALL
   #if CYTHON_ASSUME_SAFE_SIZE
   __pyx_nargs = <span class='py_macro_api'>PyTuple_GET_SIZE</span>(__pyx_args);
@@ -397,82 +345,76 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = <span class='pyx_c_api'>__Pyx_KwValues_FASTCALL</span>(__pyx_args, __pyx_nargs);
   {
-    PyObject ** const __pyx_pyargnames[] = {&amp;__pyx_mstate_global-&gt;__pyx_n_u_a,&amp;__pyx_mstate_global-&gt;__pyx_n_u_b,&amp;__pyx_mstate_global-&gt;__pyx_n_u_n_jobs,&amp;__pyx_mstate_global-&gt;__pyx_n_u_n_iter,0};
+    PyObject ** const __pyx_pyargnames[] = {&amp;__pyx_mstate_global-&gt;__pyx_n_u_a,&amp;__pyx_mstate_global-&gt;__pyx_n_u_b,&amp;__pyx_mstate_global-&gt;__pyx_n_u_n_iter,&amp;__pyx_mstate_global-&gt;__pyx_n_u_n_threads,0};
   PyObject* values[4] = {0,0,0,0};
     const Py_ssize_t __pyx_kwds_len = (__pyx_kwds) ? <span class='pyx_c_api'>__Pyx_NumKwargs_FASTCALL</span>(__pyx_kwds) : 0;
-    if (unlikely(__pyx_kwds_len) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+    if (unlikely(__pyx_kwds_len) &lt; 0) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
     if (__pyx_kwds_len &gt; 0) {
       switch (__pyx_nargs) {
         case  4:
         values[3] = <span class='pyx_c_api'>__Pyx_ArgRef_FASTCALL</span>(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[3])) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[3])) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = <span class='pyx_c_api'>__Pyx_ArgRef_FASTCALL</span>(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[2])) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[2])) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
         CYTHON_FALLTHROUGH;
         case  2:
         values[1] = <span class='pyx_c_api'>__Pyx_ArgRef_FASTCALL</span>(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[1])) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[1])) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
         CYTHON_FALLTHROUGH;
         case  1:
         values[0] = <span class='pyx_c_api'>__Pyx_ArgRef_FASTCALL</span>(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[0])) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[0])) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
         CYTHON_FALLTHROUGH;
         case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
       const Py_ssize_t kwd_pos_args = __pyx_nargs;
-      if (<span class='pyx_c_api'>__Pyx_ParseKeywords</span>(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "integrate_sin_nogil_threads", 0) &lt; (0)) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
-      for (Py_ssize_t i = __pyx_nargs; i &lt; 2; i++) {
-        if (unlikely(!values[i])) { <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("integrate_sin_nogil_threads", 0, 2, 4, i); <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span> }
+      if (<span class='pyx_c_api'>__Pyx_ParseKeywords</span>(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values, kwd_pos_args, __pyx_kwds_len, "integrate_sin_threaded", 0) &lt; (0)) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
+      for (Py_ssize_t i = __pyx_nargs; i &lt; 3; i++) {
+        if (unlikely(!values[i])) { <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("integrate_sin_threaded", 0, 3, 4, i); <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span> }
       }
     } else {
       switch (__pyx_nargs) {
         case  4:
         values[3] = <span class='pyx_c_api'>__Pyx_ArgRef_FASTCALL</span>(__pyx_args, 3);
-        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[3])) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[3])) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
         CYTHON_FALLTHROUGH;
         case  3:
         values[2] = <span class='pyx_c_api'>__Pyx_ArgRef_FASTCALL</span>(__pyx_args, 2);
-        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[2])) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
-        CYTHON_FALLTHROUGH;
-        case  2:
+        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[2])) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
         values[1] = <span class='pyx_c_api'>__Pyx_ArgRef_FASTCALL</span>(__pyx_args, 1);
-        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[1])) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[1])) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
         values[0] = <span class='pyx_c_api'>__Pyx_ArgRef_FASTCALL</span>(__pyx_args, 0);
-        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[0])) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+        if (!CYTHON_ASSUME_SAFE_MACROS &amp;&amp; unlikely(!values[0])) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
         break;
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_a = <span class='pyx_c_api'>__Pyx_PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_a == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
-    __pyx_v_b = <span class='pyx_c_api'>__Pyx_PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_b == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
-    if (values[2]) {
-      __pyx_v_n_jobs = <span class='pyx_c_api'>__Pyx_PyLong_As_int</span>(values[2]); if (unlikely((__pyx_v_n_jobs == (int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
-    } else {
-      __pyx_v_n_jobs = ((int)((int)2));
-    }
+    __pyx_v_a = <span class='pyx_c_api'>__Pyx_PyFloat_AsDouble</span>(values[0]); if (unlikely((__pyx_v_a == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 12, __pyx_L3_error)</span>
+    __pyx_v_b = <span class='pyx_c_api'>__Pyx_PyFloat_AsDouble</span>(values[1]); if (unlikely((__pyx_v_b == (double)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 12, __pyx_L3_error)</span>
+    __pyx_v_n_iter = <span class='pyx_c_api'>__Pyx_PyLong_As_long</span>(values[2]); if (unlikely((__pyx_v_n_iter == (long)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 12, __pyx_L3_error)</span>
     if (values[3]) {
-      __pyx_v_n_iter = <span class='pyx_c_api'>__Pyx_PyLong_As_int</span>(values[3]); if (unlikely((__pyx_v_n_iter == (int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+      __pyx_v_n_threads = <span class='pyx_c_api'>__Pyx_PyLong_As_int</span>(values[3]); if (unlikely((__pyx_v_n_threads == (int)-1) &amp;&amp; <span class='py_c_api'>PyErr_Occurred</span>())) <span class='error_goto'>__PYX_ERR(0, 12, __pyx_L3_error)</span>
     } else {
-      __pyx_v_n_iter = ((int)((int)0x989680));
+      __pyx_v_n_threads = ((int)((int)0));
     }
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("integrate_sin_nogil_threads", 0, 2, 4, __pyx_nargs); <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L3_error)</span>
+  <span class='pyx_c_api'>__Pyx_RaiseArgtupleInvalid</span>("integrate_sin_threaded", 0, 3, 4, __pyx_nargs); <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L3_error)</span>
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
   for (Py_ssize_t __pyx_temp=0; __pyx_temp &lt; (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
     Py_XDECREF(values[__pyx_temp]);
   }
-  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("integrate_nogil.integrate_sin_nogil_threads", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  <span class='pyx_c_api'>__Pyx_AddTraceback</span>("integrate_nogil.integrate_sin_threaded", __pyx_clineno, __pyx_lineno, __pyx_filename);
   <span class='refnanny'>__Pyx_RefNannyFinishContext</span>();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_15integrate_nogil_integrate_sin_nogil_threads(__pyx_self, __pyx_v_a, __pyx_v_b, __pyx_v_n_jobs, __pyx_v_n_iter);
+  __pyx_r = __pyx_pf_15integrate_nogil_integrate_sin_threaded(__pyx_self, __pyx_v_a, __pyx_v_b, __pyx_v_n_iter, __pyx_v_n_threads);
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -485,55 +427,53 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_15integrate_nogil_integrate_sin_nogil_threads(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_a, double __pyx_v_b, int __pyx_v_n_jobs, int __pyx_v_n_iter) {
-  double __pyx_v_step_chunk;
-  double __pyx_v_results[64];
-  int __pyx_v_i;
+static PyObject *__pyx_pf_15integrate_nogil_integrate_sin_threaded(CYTHON_UNUSED PyObject *__pyx_self, double __pyx_v_a, double __pyx_v_b, long __pyx_v_n_iter, CYTHON_UNUSED int __pyx_v_n_threads) {
+  double __pyx_v_dx;
   double __pyx_v_total;
-  int __pyx_v_iter_per_chunk;
+  long __pyx_v_i;
+  double __pyx_v_x;
   PyObject *__pyx_r = NULL;
 /* … */
-  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyLong_From_int</span>(((int)2));<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 27, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
-  __pyx_t_3 = <span class='pyx_c_api'>__Pyx_PyLong_From_int</span>(((int)0x989680));<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)</span>
+  __pyx_t_3 = <span class='py_c_api'>PyTuple_Pack</span>(1, __pyx_t_2);<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 9, __pyx_L1_error)</span>
   <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
-  __pyx_t_4 = <span class='py_c_api'>PyTuple_Pack</span>(2, __pyx_t_2, __pyx_t_3);<span class='error_goto'> if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 27, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_4);
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
-  __pyx_t_3 = <span class='pyx_c_api'>__Pyx_CyFunction_New</span>(&amp;__pyx_mdef_15integrate_nogil_1integrate_sin_nogil_threads, 0, __pyx_mstate_global-&gt;__pyx_n_u_integrate_sin_nogil_threads, NULL, __pyx_mstate_global-&gt;__pyx_n_u_integrate_nogil, __pyx_mstate_global-&gt;__pyx_d, ((PyObject *)__pyx_mstate_global-&gt;__pyx_codeobj_tab[0]));<span class='error_goto'> if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 27, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_3);
+  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_CyFunction_New</span>(&amp;__pyx_mdef_15integrate_nogil_1integrate_sin_threaded, 0, __pyx_mstate_global-&gt;__pyx_n_u_integrate_sin_threaded, NULL, __pyx_mstate_global-&gt;__pyx_n_u_integrate_nogil, __pyx_mstate_global-&gt;__pyx_d, ((PyObject *)__pyx_mstate_global-&gt;__pyx_codeobj_tab[0]));<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 9, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
   #if CYTHON_COMPILING_IN_CPYTHON &amp;&amp; PY_VERSION_HEX &gt;= 0x030E0000
-  <span class='py_c_api'>PyUnstable_Object_EnableDeferredRefcount</span>(__pyx_t_3);
+  <span class='py_c_api'>PyUnstable_Object_EnableDeferredRefcount</span>(__pyx_t_2);
   #endif
-  <span class='pyx_c_api'>__Pyx_CyFunction_SetDefaultsTuple</span>(__pyx_t_3, __pyx_t_4);
-  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_4); __pyx_t_4 = 0;
-  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_mstate_global-&gt;__pyx_d, __pyx_mstate_global-&gt;__pyx_n_u_integrate_sin_nogil_threads, __pyx_t_3) &lt; (0)) <span class='error_goto'>__PYX_ERR(0, 27, __pyx_L1_error)</span>
+  <span class='pyx_c_api'>__Pyx_CyFunction_SetDefaultsTuple</span>(__pyx_t_2, __pyx_t_3);
   <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_3); __pyx_t_3 = 0;
-</pre><pre class="cython line score-5" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">28</span>:   cdef double step_chunk = (b - a) / n_jobs</pre>
-<pre class='cython code score-5 '>  __pyx_t_1 = (__pyx_v_b - __pyx_v_a);
-  if (unlikely(__pyx_v_n_jobs == 0)) {
-    <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "float division");
-    <span class='error_goto'>__PYX_ERR(0, 28, __pyx_L1_error)</span>
-  }
-  __pyx_v_step_chunk = (__pyx_t_1 / ((double)__pyx_v_n_jobs));
-</pre><pre class="cython line score-0">&#xA0;<span class="">29</span>:   cdef double[64] results</pre>
-<pre class="cython line score-0">&#xA0;<span class="">30</span>:   cdef int i</pre>
-<pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">31</span>:   cdef double total = 0.0</pre>
+  if (<span class='py_c_api'>PyDict_SetItem</span>(__pyx_mstate_global-&gt;__pyx_d, __pyx_mstate_global-&gt;__pyx_n_u_integrate_sin_threaded, __pyx_t_2) &lt; (0)) <span class='error_goto'>__PYX_ERR(0, 9, __pyx_L1_error)</span>
+  <span class='pyx_macro_api'>__Pyx_DECREF</span>(__pyx_t_2); __pyx_t_2 = 0;
+</pre><pre class="cython line score-0">&#xA0;<span class="">10</span>: @cython.wraparound(False)</pre>
+<pre class="cython line score-0">&#xA0;<span class="">11</span>: @cython.nonecheck(False)</pre>
+<pre class="cython line score-2" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">12</span>: def integrate_sin_threaded(double a, double b, long n_iter, int n_threads=0):</pre>
+<pre class='cython code score-2 '>  __pyx_t_2 = <span class='pyx_c_api'>__Pyx_PyLong_From_int</span>(((int)0));<span class='error_goto'> if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 12, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_2);
+</pre><pre class="cython line score-0">&#xA0;<span class="">13</span>:     """</pre>
+<pre class="cython line score-0">&#xA0;<span class="">14</span>:     Вычисляет интеграл sin(x) от a до b методом прямоугольников с использованием prange.</pre>
+<pre class="cython line score-0">&#xA0;<span class="">15</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">16</span>:     Parameters:</pre>
+<pre class="cython line score-0">&#xA0;<span class="">17</span>:     -----------</pre>
+<pre class="cython line score-0">&#xA0;<span class="">18</span>:     a, b : float</pre>
+<pre class="cython line score-0">&#xA0;<span class="">19</span>:         Пределы интегрирования</pre>
+<pre class="cython line score-0">&#xA0;<span class="">20</span>:     n_points : int</pre>
+<pre class="cython line score-0">&#xA0;<span class="">21</span>:         Количество точек разбиения</pre>
+<pre class="cython line score-0">&#xA0;<span class="">22</span>:     num_threads : int</pre>
+<pre class="cython line score-0">&#xA0;<span class="">23</span>:         Количество потоков (0 = автоопределение)</pre>
+<pre class="cython line score-0">&#xA0;<span class="">24</span>:     """</pre>
+<pre class="cython line score-0">&#xA0;<span class="">25</span>:     cdef:</pre>
+<pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">26</span>:         double dx = (b - a) / n_iter</pre>
+<pre class='cython code score-0 '>  __pyx_v_dx = ((__pyx_v_b - __pyx_v_a) / ((double)__pyx_v_n_iter));
+</pre><pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">27</span>:         double total = 0.0</pre>
 <pre class='cython code score-0 '>  __pyx_v_total = 0.0;
-</pre><pre class="cython line score-11" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">32</span>:   cdef int iter_per_chunk = n_iter // n_jobs</pre>
-<pre class='cython code score-11 '>  if (unlikely(__pyx_v_n_jobs == 0)) {
-    <span class='py_c_api'>PyErr_SetString</span>(PyExc_ZeroDivisionError, "integer division or modulo by zero");
-    <span class='error_goto'>__PYX_ERR(0, 32, __pyx_L1_error)</span>
-  }
-  else if (sizeof(int) == sizeof(long) &amp;&amp; (!(((int)-1) &gt; 0)) &amp;&amp; unlikely(__pyx_v_n_jobs == (int)-1)  &amp;&amp; unlikely(<span class='pyx_macro_api'>__Pyx_UNARY_NEG_WOULD_OVERFLOW</span>(__pyx_v_n_iter))) {
-    <span class='py_c_api'>PyErr_SetString</span>(PyExc_OverflowError, "value too large to perform division");
-    <span class='error_goto'>__PYX_ERR(0, 32, __pyx_L1_error)</span>
-  }
-  __pyx_v_iter_per_chunk = __Pyx_div_int(__pyx_v_n_iter, __pyx_v_n_jobs, 0);
-</pre><pre class="cython line score-0">&#xA0;<span class="">33</span>: </pre>
-<pre class="cython line score-21" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">34</span>:   with nogil:</pre>
-<pre class='cython code score-21 '>  {
+</pre><pre class="cython line score-0">&#xA0;<span class="">28</span>:         long i</pre>
+<pre class="cython line score-0">&#xA0;<span class="">29</span>:         double x</pre>
+<pre class="cython line score-0">&#xA0;<span class="">30</span>: </pre>
+<pre class="cython line score-0">&#xA0;<span class="">31</span>:     # Параллельный цикл с reduction</pre>
+<pre class="cython line score-14" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">32</span>:     with nogil:</pre>
+<pre class='cython code score-14 '>  {
       PyThreadState * _save;
       _save = <span class='py_c_api'>PyEval_SaveThread</span>();
       <span class='pyx_c_api'>__Pyx_FastGIL_Remember</span>();
@@ -545,16 +485,11 @@ static PyObject *__pyx_pf_15integrate_nogil_integrate_sin_nogil_threads(CYTHON_U
           <span class='py_c_api'>PyEval_RestoreThread</span>(_save);
           goto __pyx_L5;
         }
-        __pyx_L4_error: {
-          <span class='pyx_c_api'>__Pyx_FastGIL_Forget</span>();
-          <span class='py_c_api'>PyEval_RestoreThread</span>(_save);
-          goto __pyx_L1_error;
-        }
         __pyx_L5:;
       }
   }
-</pre><pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">35</span>:     for i in prange(n_jobs, num_threads=n_jobs, schedule='static'):</pre>
-<pre class='cython code score-0 '>        __pyx_t_2 = __pyx_v_n_jobs;
+</pre><pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">33</span>:         for i in prange(n_iter, num_threads=n_threads, schedule='static'):</pre>
+<pre class='cython code score-0 '>        __pyx_t_1 = __pyx_v_n_iter;
         {
             #if ((defined(__APPLE__) || defined(__OSX__)) &amp;&amp; (defined(__GNUC__) &amp;&amp; (__GNUC__ &gt; 2 || (__GNUC__ == 2 &amp;&amp; (__GNUC_MINOR__ &gt; 95)))))
                 #undef likely
@@ -562,17 +497,17 @@ static PyObject *__pyx_pf_15integrate_nogil_integrate_sin_nogil_threads(CYTHON_U
                 #define likely(x)   (x)
                 #define unlikely(x) (x)
             #endif
-            __pyx_t_4 = (__pyx_t_2 - 0 + 1 - 1/abs(1)) / 1;
-            if (__pyx_t_4 &gt; 0)
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 &gt; 0)
             {
                 #ifdef _OPENMP
                 #pragma omp parallel
                 #endif /* _OPENMP */
                 {
                     #ifdef _OPENMP
-                    #pragma omp for firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(static)
+                    #pragma omp for firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) reduction(+:__pyx_v_total) firstprivate(__pyx_v_x) lastprivate(__pyx_v_x) schedule(static)
 /* … */
-        __pyx_t_2 = __pyx_v_n_jobs;
+        __pyx_t_1 = __pyx_v_n_iter;
         {
             #if ((defined(__APPLE__) || defined(__OSX__)) &amp;&amp; (defined(__GNUC__) &amp;&amp; (__GNUC__ &gt; 2 || (__GNUC__ == 2 &amp;&amp; (__GNUC_MINOR__ &gt; 95)))))
                 #undef likely
@@ -580,85 +515,26 @@ static PyObject *__pyx_pf_15integrate_nogil_integrate_sin_nogil_threads(CYTHON_U
                 #define likely(x)   (x)
                 #define unlikely(x) (x)
             #endif
-            __pyx_t_4 = (__pyx_t_2 - 0 + 1 - 1/abs(1)) / 1;
-            if (__pyx_t_4 &gt; 0)
+            __pyx_t_3 = (__pyx_t_1 - 0 + 1 - 1/abs(1)) / 1;
+            if (__pyx_t_3 &gt; 0)
             {
                 #ifdef _OPENMP
                 #pragma omp parallel
                 #endif /* _OPENMP */
                 {
                     #ifdef _OPENMP
-                    #pragma omp for firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) schedule(static) num_threads(__pyx_v_n_jobs)
+                    #pragma omp for firstprivate(__pyx_v_i) lastprivate(__pyx_v_i) reduction(+:__pyx_v_total) firstprivate(__pyx_v_x) lastprivate(__pyx_v_x) schedule(static) num_threads(__pyx_v_n_threads)
                     #endif /* _OPENMP */
-                    for (__pyx_t_3 = 0; __pyx_t_3 &lt; __pyx_t_4; __pyx_t_3++){
+                    for (__pyx_t_2 = 0; __pyx_t_2 &lt; __pyx_t_3; __pyx_t_2++){
                         {
-                            __pyx_v_i = (int)(0 + 1 * __pyx_t_3);
-</pre><pre class="cython line score-38" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">36</span>:       results[i] = integrate_nogil(c_sin, a + i * step_chunk, a + (i + 1) * step_chunk, iter_per_chunk)</pre>
-<pre class='cython code score-38 '>                            __pyx_t_1 = __pyx_f_15integrate_nogil_integrate_nogil(sin, (__pyx_v_a + (__pyx_v_i * __pyx_v_step_chunk)), (__pyx_v_a + ((__pyx_v_i + 1) * __pyx_v_step_chunk)), __pyx_v_iter_per_chunk); if (unlikely(__pyx_t_1 == ((double)-1) &amp;&amp; <span class='pyx_c_api'>__Pyx_ErrOccurredWithGIL</span>())) <span class='error_goto'>__PYX_ERR(0, 36, __pyx_L8_error)</span>
-                            (__pyx_v_results[__pyx_v_i]) = __pyx_t_1;
-                            goto __pyx_L11;
-                            __pyx_L8_error:;
-                            {
-                                PyGILState_STATE __pyx_gilstate_save = <span class='pyx_c_api'>__Pyx_PyGILState_Ensure</span>();
-                                #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
-                                <span class='py_c_api'>PyMutex_Lock</span>(&amp;__pyx_parallel_freethreading_mutex);
-                                #endif
-                                #ifdef _OPENMP
-                                #pragma omp flush(__pyx_parallel_exc_type)
-                                #endif /* _OPENMP */
-                                if (!__pyx_parallel_exc_type) {
-                                  <span class='pyx_c_api'>__Pyx_ErrFetchWithState</span>(&amp;__pyx_parallel_exc_type, &amp;__pyx_parallel_exc_value, &amp;__pyx_parallel_exc_tb);
-                                  __pyx_parallel_filename = __pyx_filename; __pyx_parallel_lineno = __pyx_lineno; __pyx_parallel_clineno = __pyx_clineno;
-                                  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_parallel_exc_type);
-                                }
-                                #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
-                                <span class='py_c_api'>PyMutex_Unlock</span>(&amp;__pyx_parallel_freethreading_mutex);
-                                #endif
-                                <span class='pyx_c_api'>__Pyx_PyGILState_Release</span>(__pyx_gilstate_save);
-                            }
-                            __pyx_parallel_why = 4;
-                            goto __pyx_L11;
-                            __pyx_L11:;
-                            #ifdef _OPENMP
-                            #pragma omp flush(__pyx_parallel_why)
-                            #endif /* _OPENMP */
+                            __pyx_v_i = (long)(0 + 1 * __pyx_t_2);
+</pre><pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">34</span>:             x = a + (i + 0.5) * dx</pre>
+<pre class='cython code score-0 '>                            __pyx_v_x = (__pyx_v_a + ((__pyx_v_i + 0.5) * __pyx_v_dx));
+</pre><pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">35</span>:             total += sin(x)</pre>
+<pre class='cython code score-0 '>                            __pyx_v_total = (__pyx_v_total + sin(__pyx_v_x));
                         }
                     }
-                    #ifdef _OPENMP
-                    Py_END_ALLOW_THREADS
-                    #else
-{
-PyGILState_STATE __pyx_gilstate_save = <span class='pyx_c_api'>__Pyx_PyGILState_Ensure</span>();
-                    #endif /* _OPENMP */
-                    /* Clean up any temporaries */
-                    <span class='pyx_c_api'>__Pyx_PyGILState_Release</span>(__pyx_gilstate_save);
-                    #ifndef _OPENMP
-}
-#endif /* _OPENMP */
                 }
-            }
-            if (__pyx_parallel_exc_type) {
-              /* This may have been overridden by a continue, break or return in another thread. Prefer the error. */
-              __pyx_parallel_why = 4;
-            }
-            if (__pyx_parallel_why) {
-              switch (__pyx_parallel_why) {
-                    case 4:
-                {
-                    PyGILState_STATE __pyx_gilstate_save = <span class='pyx_c_api'>__Pyx_PyGILState_Ensure</span>();
-                    #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
-                    <span class='py_c_api'>PyMutex_Lock</span>(&amp;__pyx_parallel_freethreading_mutex);
-                    #endif
-                    <span class='refnanny'>__Pyx_GIVEREF</span>(__pyx_parallel_exc_type);
-                    <span class='pyx_c_api'>__Pyx_ErrRestoreWithState</span>(__pyx_parallel_exc_type, __pyx_parallel_exc_value, __pyx_parallel_exc_tb);
-                    __pyx_filename = __pyx_parallel_filename; __pyx_lineno = __pyx_parallel_lineno; __pyx_clineno = __pyx_parallel_clineno;
-                    #if CYTHON_COMPILING_IN_CPYTHON_FREETHREADING
-                    <span class='py_c_api'>PyMutex_Unlock</span>(&amp;__pyx_parallel_freethreading_mutex);
-                    #endif
-                    <span class='pyx_c_api'>__Pyx_PyGILState_Release</span>(__pyx_gilstate_save);
-                }
-                goto __pyx_L4_error;
-              }
             }
         }
         #if ((defined(__APPLE__) || defined(__OSX__)) &amp;&amp; (defined(__GNUC__) &amp;&amp; (__GNUC__ &gt; 2 || (__GNUC__ == 2 &amp;&amp; (__GNUC_MINOR__ &gt; 95)))))
@@ -668,20 +544,12 @@ PyGILState_STATE __pyx_gilstate_save = <span class='pyx_c_api'>__Pyx_PyGILState_
             #define unlikely(x) __builtin_expect(!!(x), 0)
         #endif
       }
-</pre><pre class="cython line score-0">&#xA0;<span class="">37</span>: </pre>
-<pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">38</span>:   for i in range(n_jobs):</pre>
-<pre class='cython code score-0 '>  __pyx_t_4 = __pyx_v_n_jobs;
-  __pyx_t_3 = __pyx_t_4;
-  for (__pyx_t_2 = 0; __pyx_t_2 &lt; __pyx_t_3; __pyx_t_2+=1) {
-    __pyx_v_i = __pyx_t_2;
-</pre><pre class="cython line score-0" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">39</span>:     total += results[i]</pre>
-<pre class='cython code score-0 '>    __pyx_v_total = (__pyx_v_total + (__pyx_v_results[__pyx_v_i]));
-  }
-</pre><pre class="cython line score-6" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">40</span>:   return total</pre>
+</pre><pre class="cython line score-0">&#xA0;<span class="">36</span>: </pre>
+<pre class="cython line score-6" onclick="(function(f,s,c){c=f.nodeValue=='+';s.display=c?'block':'none';f.nodeValue=c?'−':'+'})(this.firstChild,this.nextElementSibling.style)">+<span class="">37</span>:     return total * dx</pre>
 <pre class='cython code score-6 '>  <span class='pyx_macro_api'>__Pyx_XDECREF</span>(__pyx_r);
-  __pyx_t_5 = <span class='py_c_api'>PyFloat_FromDouble</span>(__pyx_v_total);<span class='error_goto'> if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)</span>
-  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_5);
-  __pyx_r = __pyx_t_5;
-  __pyx_t_5 = 0;
+  __pyx_t_4 = <span class='py_c_api'>PyFloat_FromDouble</span>((__pyx_v_total * __pyx_v_dx));<span class='error_goto'> if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)</span>
+  <span class='refnanny'>__Pyx_GOTREF</span>(__pyx_t_4);
+  __pyx_r = __pyx_t_4;
+  __pyx_t_4 = 0;
   goto __pyx_L0;
 </pre></div></body></html>
